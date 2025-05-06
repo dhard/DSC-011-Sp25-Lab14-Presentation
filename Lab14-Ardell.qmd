@@ -1,0 +1,75 @@
+---
+title: "Sex Ratio at Birth <br> in U.S. Baby Names"
+subtitle: "DSC 011 Spring 2025 Lab 14"
+author: "David Ardell"
+date: "May 7, 2025"
+format: revealjs
+bibliography: DSC-011-Lab14.bib
+---
+
+## Introduction 
+
+### Dataset
+
+Baby Names frequency data are available from the U.S. Social Security Administration for decades from 1880s to 2010s. A larger dataset if available from the R package `babynames` [@wickham21].
+
+### Question
+
+What is the Sex Ratio at Birth in this Baby Names Data?
+
+### Motivation
+
+Sex Ratio at Birth is famously biased in Humans. Can we find support for this bias in the Baby Names data?
+
+## Obtaining and Cleaning Data
+
+### Obtaining Data
+
+Top 200-Names data from the S.S.A. was obtained using `Bash` scripts  with `wget` in April, 2025. The `babynames` package was obtained from CRAN.
+
+### Cleaning Data
+
+Data were converted from html to text using Python `html2text` and cleaned using `Perl` one-liners. 
+
+## Results
+
+![](SRB.png)
+
+## Code Snippets and Tips
+
+To make this figure I used this Graph Expression, which I styled according to the [Tidyverse Style Guide](https://style.tidyverse.org). Some parts (ie labels) omitted clarity. Notice I used multiple geoms to create this figure and specified the y-axis limits. 
+
+```{r}
+#| eval: false
+#| echo: true
+as_tibble(babies_born_both) |> 
+  ggplot(aes(x=decade,
+             y=sex_ratio,
+             color=dataset)) +
+    geom_errorbar(aes(ymin=lower,
+                      ymax=upper)) + 
+    geom_line() + 
+    geom_point() + 
+    ylim(0,1) + 
+    geom_hline(yintercept=0.5) + 
+    scale_color_okabe_ito()
+```
+
+## Interpretation
+
+The male-biased human Sex Ratio at Birth (SRB) is one of the first statistical subjects to be studied in modern Western science and was the subject of the first published hypothesis test [@Campbell01] as detailed on the next slide.
+
+It is thought that the male-biased SRB in humans is an evolutionary adaptation to adjust for excess male mortality, which was shown in our VA Deaths bar chart included here on a subsequent slide 
+
+More information, including about the mechanistic causes of male-biased SRB, is given in the commentary of @Austad15.
+
+## Interpretation Details
+
+![](interpretation.png)
+
+## Interpretation Details
+
+![](VADeaths.png)
+
+
+## References

@@ -1,0 +1,64 @@
+---
+title: "Template for Original <br> Data Science Presentation"
+subtitle: "DSC 011 Spring 2025 Lab 14"
+author: "David Ardell"
+date: "May 7, 2025"
+format: revealjs
+bibliography: DSC-011-Lab14.bib
+---
+
+## Introduction 
+
+### Dataset
+
+Provide a description of the source of the data you analyzed, providing a URL or automatically formatted reference with Quarto markdown.
+
+### Question
+
+Provide a question that you attempted to answer from this data using R/tidyverse pipelines, Bash+Perl scripts and other techniques we learned in this class.
+
+### Motivation
+
+Provide a motivation for your analysis, **why** you decided to analyze this question and data.
+
+## Obtaining and Cleaning Data
+
+### Obtaining Data
+
+Briefly describe how you obtained the data, emphasizing the computational techniques from this class. 
+
+### Cleaning Data
+
+Briefly describe how you processed and scrubbed the data, emphasizing the computational techniques from this class. 
+
+## Results
+
+Use a PNG image or an R code chunk to generate a graph or plot from your data that addresses the question and motivation of this presentation. You may include more than one results figures but you should concentrate on only showing your best 1-2 results. 
+
+## Code Snippets and Tips
+
+Provide at least one code snippet or coding tip with example that was key for you to obtain your results that you thought would be useful to share. Format your code using the [Tidyverse Style Guide](https://style.tidyverse.org).
+
+```{r}
+#| eval: false
+#| echo: true
+as_tibble(babies_born_both) |> 
+  ggplot(aes(x=decade,
+             y=sex_ratio,
+             color=dataset)) +
+    geom_errorbar(aes(ymin=lower,
+                      ymax=upper)) + 
+    geom_line() + 
+    geom_point() + 
+    ylim(0,1) + 
+    geom_hline(yintercept=0.5) + 
+    scale_color_okabe_ito()
+```
+
+## Interpretation
+
+Provide at least one interpretation slide stating a summary of your interpretation of your result(s). You may also provide additional evidence in support of your interpretation in 1-3 additional slides.
+
+## References
+
+Include at least one reference for your presentation using Quarto's automatic reference formatting.
